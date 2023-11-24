@@ -225,7 +225,7 @@ public class UserDAO {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource 반환
+			jdbcUtil.close();		// resource 반환// resource 반환
 		}
 		return null;
 	}
