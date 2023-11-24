@@ -30,11 +30,13 @@ public class UserDAO {
 		try {				
 			int result = jdbcUtil.executeUpdate();	// insert 문 실행
 			return result;
+			
+			// insert 문 실행
 		} catch (Exception ex) {
-			jdbcUtil.rollback();
-			ex.printStackTrace();
+			jdbcUtil.rollback();// resource 반환// resource 반환
+			ex.printStackTrace();// resource 반환
 		} finally {		
-			jdbcUtil.commit();
+			jdbcUtil.commit();// resource 반환
 			jdbcUtil.close();	// resource 반환
 		}		
 		return 0;			
