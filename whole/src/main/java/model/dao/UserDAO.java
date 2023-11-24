@@ -13,15 +13,20 @@ import model.User;
 
 public class UserDAO {
 	private JDBCUtil jdbcUtil = null;
-	private int num;
 	
 	public UserDAO() {			
 		jdbcUtil = new JDBCUtil();	// JDBCUtil 객체 생성
 	}
 		
 	/**
-	 * 사용자 관리 테이블에 새로운 사용자 생성.
-	 */
+     * 사용자 관리 테이블에 새로운 사용자 생성.
+     */
+       /**
+     * 사용자 관리 테이블에 새로운 사용자 생성.
+     */
+       /**
+     * 사용자 관리 테이블에 새로운 사용자 생성.
+     */
 	public int create(User user) throws SQLException {
 		String sql = "INSERT INTO USERINFO VALUES (?, ?, ?, ?, ?, ?)";		
 		Object[] param = new Object[] {user.getUserId(), user.getPassword(), 
