@@ -10,8 +10,10 @@ import model.User;
  * 사용자 관리를 위해 데이터베이스 작업을 전담하는 DAO 클래스
  * USERINFO 테이블에 사용자 정보를 추가, 수정, 삭제, 검색 수행 
  */
+
 public class UserDAO {
 	private JDBCUtil jdbcUtil = null;
+	private int num;
 	
 	public UserDAO() {			
 		jdbcUtil = new JDBCUtil();	// JDBCUtil 객체 생성
@@ -92,6 +94,10 @@ public class UserDAO {
 	 * 주어진 사용자 ID에 해당하는 사용자 정보를 데이터베이스에서 찾아 User 도메인 클래스에 
 	 * 저장하여 반환.
 	 */
+	/**
+     * 주어진 사용자 ID에 해당하는 사용자 정보를 데이터베이스에서 찾아 User 도메인 클래스에 
+     * 저장하여 반환.
+     */
 	public User findUser(String userId) throws SQLException {
         String sql = "SELECT password, name, email, phone, commId, cName "
         			+ "FROM USERINFO u LEFT OUTER JOIN Community c ON u.commId = c.cId "
