@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Food extends Post {
 
@@ -13,7 +14,7 @@ public class Food extends Post {
 	}
 
 	public Food(long post_id, String title, String type, String content, String image,
-			Date reg_date, Long writer_id, String food_type, Date exp_date) {
+			LocalDate reg_date, Long writer_id, String food_type, Date exp_date) {
 
 		super(post_id, title, type, content, image, reg_date, writer_id);
 

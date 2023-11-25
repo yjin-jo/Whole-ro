@@ -31,7 +31,7 @@ private JDBCUtil jdbcUtil = null;
 				food.setTitle(rs.getString("title"));
 				food.setImage(rs.getString("image"));
 				food.setExp_date(rs.getDate("exp_date"));
-				food.setReg_date(rs.getDate("reg_date"));
+				food.setReg_date(rs.getDate("reg_date").toLocalDate());
 				foodList.add(food);				// List에 Community 객체 저장
 			}		
 			return foodList;					
