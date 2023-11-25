@@ -11,6 +11,7 @@ public class Post {
     protected Date reg_date;
     protected Long writer_id;
 
+    public Post() {}
     public Post(Long post_id, String title, String type, String content, String image, Date reg_date, Long writer_id) {
         super();
         this.post_id = post_id;

@@ -7,6 +7,10 @@ public class Food extends Post {
 	private String food_type;
 	private Date exp_date;
 	
+	public Food()
+	{
+		super();
+	}
 	
 	public Food(long post_id, String title, String type, String content, String image,
 			Date reg_date, Long writer_id, String food_type, Date exp_date) {
