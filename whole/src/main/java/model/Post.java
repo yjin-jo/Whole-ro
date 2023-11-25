@@ -3,15 +3,15 @@ package model;
 import java.util.Date;
 
 public class Post {
-    private Long post_id;
-    private String title;
-    private String type;
-    private String content;
-    private String image;
-    private Date reg_date;
-    private Date writer_id;
+    protected Long post_id;
+    protected String title;
+    protected String type;
+    protected String content;
+    protected String image;
+    protected Date reg_date;
+    protected Long writer_id;
 
-    public Post(Long post_id, String title, String type, String content, String image, Date reg_date, Date writer_id) {
+    public Post(Long post_id, String title, String type, String content, String image, Date reg_date, Long writer_id) {
         super();
         this.post_id = post_id;
         this.title = title;
@@ -70,11 +70,11 @@ public class Post {
         this.reg_date = reg_date;
     }
 
-    public Date getWriter_id() {
+    public Long getWriter_id() {
         return writer_id;
     }
 
-    public void setWriter_id(Date writer_id) {
+    public void setWriter_id(Long writer_id) {
         this.writer_id = writer_id;
     }
 
