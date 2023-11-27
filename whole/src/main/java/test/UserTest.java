@@ -5,6 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 import model.dao.*;
+import model.entity.UserEntity;
+import model.enums.GenderEnum;
 import model.User;
 
 
@@ -18,11 +20,11 @@ private static UserDAO userDao = new UserDAO();
         
       
         //추가
-        //User user = new User("email", "password", "nickname", 0, "introduction", "interest", "address", 2);
+        //UserEntity user = new UserEntity("email2", "password", "nickname", GenderEnum.MALE, "introduction", "interest", "address", 2);
         //userDao.create(user);
         
         //수정
-        //User user1 = new User("ado", "얌냠", "하이하이", "운동", "서울시 성동구", "email");
+        //UserEntity user1 = new UserEntity("ado2", "얌냠2", "하이하이", "운동", "서울시 마포구", "email2");
         //userDao.update(user1);
 
         //삭제
@@ -35,7 +37,7 @@ private static UserDAO userDao = new UserDAO();
         System.out.print("출력할 이메일를 입력하시오: ");
         String email2 = scanner.next();
         //email로 전체 정보 출력
-        List<User> userList = userDao.findUserList(email2);
+        List<UserEntity> userList = userDao.findUserList(email2);
         
         //email로 같이가치에 필요한 정보만 출력
         //List<User> userList = userDao.findWithWithList(email);
@@ -43,17 +45,17 @@ private static UserDAO userDao = new UserDAO();
 
         // emp 객체들을 하나씩 접근하기 위해 empList로부터 Iterator<Employee>를 구해서 활용
 
-        Iterator<User> iter = userList.iterator();
+        Iterator<UserEntity> iter = userList.iterator();
           
         System.out.println("-----------------------------------------------------------------------");
 
         while(iter.hasNext()) {
-            User user2 = iter.next();
+            UserEntity user2 = iter.next();
             System.out.println(user2);
         }
         System.out.println();
         
-        
+
         //이메일 체크
         System.out.print("체크할 이메일를 입력하시오: ");
         String email3 = scanner.next();
@@ -66,7 +68,7 @@ private static UserDAO userDao = new UserDAO();
         //닉네임 체크
         System.out.print("체크할 닉네임를 입력하시오: ");
         String nickname = scanner.next();
-        if(userDao.existingNickname(nickname) == true) {
+        if(userDao.existingUserNickname(nickname) == true) {
             System.out.println(nickname + "는 존재합니다.");
         }else {
             System.out.println(nickname + "는 존재하지 않습니다.");
