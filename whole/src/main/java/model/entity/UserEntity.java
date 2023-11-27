@@ -1,4 +1,6 @@
-package model;
+package model.entity;
+
+import model.enums.GenderEnum;
 
 /**
  * 사용자 관리를 위해 필요한 도메인 클래스. USERINFO 테이블과 대응됨
@@ -7,26 +9,26 @@ package model;
  * 사용자 관리를 위해 필요한 도메인 클래스. USERINFO 테이블과 대응됨
  */
 
-public class User {
+public class UserEntity {
     private long userId;
     private String email;
     private String password;
     private String nickname;
-    private int gender;
+    private GenderEnum gender;
     private String introduction;
     private String interest;
     private String address;
     private int reportCount;
 
-    public User() { }       // 기본 생성자
+    public UserEntity() { }       // 기본 생성자
     
-    public User(String nickname, String introduction, String interest) { 
+    public UserEntity(String nickname, String introduction, String interest) { 
         this.nickname = nickname;
         this.introduction = introduction;
         this.interest = interest; 
     }  
     
-    public User(String password, String name, String introduction, String interest, String address, String email) {
+    public UserEntity(String password, String name, String introduction, String interest, String address, String email) {
         this.password = password;
         this.nickname = name;
         this.introduction = introduction;
@@ -35,7 +37,7 @@ public class User {
         this.email = email;
     }
     
-    public User(String email, String password, String nickname, int gender, String introduction,
+    public UserEntity(String email, String password, String nickname, GenderEnum gender, String introduction,
             String interest, String address, int reportCount) {
         super();
         this.email = email;
@@ -87,11 +89,11 @@ public class User {
         this.nickname = nickname;
     }
 
-    public int getGender() {
+    public GenderEnum getGender() {
         return gender;
     }
 
-    public void setGender(int gender) {
+    public void setGender(GenderEnum gender) {
         this.gender = gender;
     }
 
@@ -148,4 +150,3 @@ public class User {
                 + ", reportCount=" + reportCount + "]";
     }   
 }
-
