@@ -34,10 +34,10 @@ private static UserDAO userDao = new UserDAO();
         //userDao.remove(email1);
         
         
-        System.out.print("출력할 이메일를 입력하시오: ");
-        String email2 = scanner.next();
+        //System.out.print("출력할 이메일를 입력하시오: ");
+        //String email2 = scanner.next();
         //email로 전체 정보 출력
-        List<UserEntity> userList = userDao.findUserList(email2);
+        //List<UserEntity> userList = userDao.findUserList(email2);
         
         //email로 같이가치에 필요한 정보만 출력
         //List<User> userList = userDao.findWithWithList(email);
@@ -45,17 +45,33 @@ private static UserDAO userDao = new UserDAO();
 
         // emp 객체들을 하나씩 접근하기 위해 empList로부터 Iterator<Employee>를 구해서 활용
 
-        Iterator<UserEntity> iter = userList.iterator();
+        //Iterator<UserEntity> iter = userList.iterator();
           
+        //System.out.println("-----------------------------------------------------------------------");
+
+        //while(iter.hasNext()) {
+            //UserEntity user2 = iter.next();
+            //System.out.println(user2);
+        //}
+        //System.out.println();
+        
+        
+        
+        System.out.print("관심사를 입력하시오: ");
+        String interest = scanner.next();
+        System.out.print("성별를 입력하시오: ");
+        String gender = scanner.next();
+        List<UserEntity> userList2 = userDao.findUserWithWithGenderList(interest, GenderEnum.valueOf(gender));
+        
+        Iterator<UserEntity> iter2 = userList2.iterator();
         System.out.println("-----------------------------------------------------------------------");
 
-        while(iter.hasNext()) {
-            UserEntity user2 = iter.next();
+        while(iter2.hasNext()) {
+            UserEntity user2 = iter2.next();
             System.out.println(user2);
         }
         System.out.println();
         
-
         //이메일 체크
         System.out.print("체크할 이메일를 입력하시오: ");
         String email3 = scanner.next();
