@@ -17,13 +17,22 @@ public class MessageEntity {
     private LocalDate regDate;
     private BooleanEnum isRead;
     private MessageType msgType;
+    private Long postId;
     
+    public Long getPostId() {
+        return postId;
+    }
+
+    public void setPostId(Long postId) {
+        this.postId = postId;
+    }
+
     public MessageEntity() {
        
     }
     
     public MessageEntity(Long msgId, Long senderId, Long receiverId, String title, String content, String image,
-            LocalDate reg_date, BooleanEnum is_read, MessageType msgType) {
+            LocalDate reg_date, BooleanEnum isRead, MessageType msgType, Long postId) {
         super();
         this.msgId = msgId;
         this.senderId = senderId;
@@ -34,6 +43,7 @@ public class MessageEntity {
         this.regDate = reg_date;
         this.isRead = isRead;
         this.msgType = msgType;
+        this.postId = postId;
     }
     public Long getMsgId() {
         return msgId;
@@ -90,6 +100,11 @@ public class MessageEntity {
         this.msgType = msgType;
     }
     
-    
+    @Override
+    public String toString() {
+        return "MessageEntity [msgId=" + msgId + ", senderId=" + senderId + ", receiverId=" + receiverId + ", title="
+                + title + ", content=" + content + ", image=" + image + ", regDate=" + regDate + ", isRead=" + isRead
+                + ", msgType=" + msgType + ", postId=" + postId + "]";
+    }
 
 }
