@@ -10,14 +10,13 @@ public class Item extends Post {
     private Long price;
     private String detail;
     private String item_type;
-    private String publish_type;
    
     public Item() {
         super();
     }
 
     public Item(long post_id, String title, String type, String content, String image, LocalDate reg_date,
-            Long writer_id, int cnt_like, int scrap, Long price, String detail, String item_type, String publish_type) {
+            Long writer_id, int cnt_like, int scrap, Long price, String detail, String item_type) {
 
         super(post_id, title, type, content, image, reg_date, writer_id);
 
@@ -26,7 +25,6 @@ public class Item extends Post {
         this.setPrice(price);
         this.setDetail(detail);
         this.setItem_type(item_type);
-        this.setPublish_type(publish_type);
     }
 
     public int getCnt_like() {
@@ -66,13 +64,7 @@ public class Item extends Post {
     public String getItem_type() {
         return publish_type;
     }
-    public void setPublish_type(String publish_type) {
-        this.publish_type = publish_type;
-    }
-
-    public String getPublish_type() {
-        return publish_type;
-    }
+ 
    
     @Override
     public String toString() {

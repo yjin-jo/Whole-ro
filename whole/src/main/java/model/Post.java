@@ -3,7 +3,7 @@ package model;
 import java.time.LocalDate;
 import java.util.Date;
 
-public class Post {
+public class Post extends User {
     protected Long post_id;
     protected String title;
     protected String type;
@@ -13,15 +13,15 @@ public class Post {
     protected Long writer_id;
 
     public Post() {}
-    public Post(Long post_id, String title, String type, String content, String image, LocalDate reg_date, Long writer_id) {
-        super();
+    public Post( String userId,String password, String name, String email, String phone, int commId, String commName, Long post_id, String title, String type, String content, String image, LocalDate reg_date, Long writer_id) {
+        super(userId, password, name, email, phone, commId, commName);
         this.post_id = post_id;
         this.title = title;
         this.type = type;
         this.content = content;
         this.image = image;
         this.reg_date = reg_date;
-        this.writer_id = writer_id;
+        this.writer_id = writer_id;    
     }
 
 //    
@@ -88,6 +88,7 @@ public class Post {
     public void setWriter_id(Long writer_id) {
         this.writer_id = writer_id;
     }
+   
     
  @Override
     public String toString() {

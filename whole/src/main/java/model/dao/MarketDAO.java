@@ -131,20 +131,24 @@ public class MarketDAO {
     return null;
 }
 
-    //같은 성별에 해당하는 아이템 리스트만 보여주기
-    public List<Item> findItemListGenderType(String type) throws SQLException {
+    //타입 별 같은 성별에 해당하는 아이템 전체 리스트만 보여주기 user과 join >> 성별과 마켓인지 장터인지 사용자가 입력
+    
+    public List<Item> findItemListSameGender(String gender, String type) throws SQLException {
 
-        String sql = "SELECT post_id, title, type, content, image,reg_date, writer_id,cnt_like,detail,price,scrap "
-                + "FROM ITEM JOIN POST USING (post_id) "
-                + "WHERE type = ? ";
+        String sql = "SELECT POST.post_id, POST.title, POST.type, POST.content, POST.image, POST.reg_date, POST.writer_id,"
+                + "ITEM.cnt_like, ITEM.detail, ITEM.price, ITEM.scrap, USER_TABLE.gender "
+                + "FROM ITEM "
+                + "JOIN POST ON ITEM.post_id = POST.post_id "
+                + "JOIN USER_TABLE ON POST.writer_id = USER_TABLE.user_id "
+                + "WHERE USER_TABLE.gender = ? AND POST.type= ?";
 
-        jdbcUtil.setSqlAndParameters(sql,  new Object[]{type}); // JDBCUtil에 query문 설정
+        jdbcUtil.setSqlAndParameters(sql, new Object[]{gender, type}); // JDBCUtil에 query문 설정
 
   
         try {
             ResultSet rs = jdbcUtil.executeQuery(); // query 실행
            
-            List<Item> itemList = new ArrayList<Item>(); // 타입이 Market인 Post 리스트 생성
+            List<Item> GenderTypeitemList = new ArrayList<Item>(); // 타입이 Market인 Post 리스트 생성
             while (rs.next()) {
                 Item item = new Item();
                 item.setPost_id(rs.getLong("post_id"));// post 객체를 생성하여 현재 행의 정보를 저장
@@ -158,9 +162,9 @@ public class MarketDAO {
                 item.setDetail(rs.getString("detail"));
                 item.setPrice(rs.getLong("price"));
                 item.setScrap(rs.getInt("scrap"));
-                itemList.add(item);             // List에 post 객체 저장
+                GenderTypeitemList.add(item);             // List에 post 객체 저장
             }
-            return itemList;
+            return GenderTypeitemList;
 
         } catch (Exception ex) {
             ex.printStackTrace();
