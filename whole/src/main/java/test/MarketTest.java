@@ -15,6 +15,10 @@ public class MarketTest {
     public static void main(String[] args) throws SQLException {
         Scanner scanner = new Scanner(System.in);
 
+        //테스트 할 것들 주석 없애고 테스트 해보세요!
+   
+        
+     // 타입 상관없이 모든 글을 보여주기
 //        List<Item> AllitemList = marketDao.findItemListAllType();
 //        if (AllitemList != null) {
 //            Iterator<Item> iter = AllitemList.iterator();
@@ -32,7 +36,9 @@ public class MarketTest {
 //        } else {
 //            System.out.println("No posts found.");
 //        }
-//
+        
+        
+// // 글 중에서 타입에 따라서 아이템 글 리스트을 보여주기
 //        System.out.print("포스트타입을 입력하시오: ");
 //        String type = scanner.next();
 //        List<Item> itemList = marketDao.findItemListType(type);
@@ -55,6 +61,9 @@ public class MarketTest {
 //            System.out.println("No posts found.");
 //        }
 //
+        
+     // 글 제목으로 select해서 상세 글 보이도록
+        // 사진, 제목, 가격, 지역, 태그, 업로드 날짜 가져오기
 //        System.out.print("포스트타입을 입력하시오: ");
 //        String posttype = scanner.next();
 //        System.out.println();
@@ -79,6 +88,8 @@ public class MarketTest {
 //            System.out.println();
 //        }
 //        
+        
+        //타입 별 같은 성별에 해당하는 아이템 전체 리스트만 보여주기 user과 join >> 성별과 마켓인지 장터인지 사용자가 입력
         System.out.print("성별을 입력하시오: ");
         String gender = scanner.next();
         System.out.println();
