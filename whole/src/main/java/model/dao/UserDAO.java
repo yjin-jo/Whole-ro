@@ -202,7 +202,33 @@ public class UserDAO {
         return null;
     }
 
- 
+    public List<UserEntity> findUserWithWithGenderList(String interest, GenderEnum gender) throws SQLException {
+        String sql =  "SELECT user_id, nickname, introduction, interest "
+                    + "FROM USER_TABLE "
+                    + "WHERE interest=? AND gender=? " 
+                    + "ORDER BY user_id";
+        jdbcUtil.setSqlAndParameters(sql, new Object[] {interest, gender.toString()});     // JDBCUtil에 query문 설정
+                    
+        try {
+            ResultSet rs = jdbcUtil.executeQuery();         // query 실행         
+            List<UserEntity> userList = new ArrayList<UserEntity>();    // User들의 리스트 생성
+            while (rs.next()) {
+                UserEntity user = new UserEntity();           // User 객체를 생성하여 현재 행의 정보를 저장
+                user.setNickname(rs.getString("nickname")); 
+                user.setIntroduction(rs.getString("introduction"));
+                user.setInterest(interest);
+                userList.add(user);             // List에 User 객체 저장
+            }       
+            
+            return userList;                    
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            jdbcUtil.close();       // resource 반환
+        }
+        return null;
+    }
 	/**
 	 * 특정 커뮤니티에 속한 사용자들을 검색하여 List에 저장 및 반환
 	 */
