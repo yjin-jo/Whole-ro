@@ -27,6 +27,7 @@ public class Item extends Post {
         this.setItem_type(item_type);
     }
 
+
     public int getCnt_like() {
         return cnt_like;
     }
