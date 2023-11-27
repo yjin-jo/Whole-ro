@@ -36,6 +36,7 @@ private static UserDAO userDao = new UserDAO();
         String email2 = scanner.next();
         //email로 전체 정보 출력
         List<User> userList = userDao.findUserList(email2);
+        
         //email로 같이가치에 필요한 정보만 출력
         //List<User> userList = userDao.findWithWithList(email);
         // empList에 포함된 모든 emp 객체들의 필드 값을 출력 
@@ -51,7 +52,9 @@ private static UserDAO userDao = new UserDAO();
             System.out.println(user2);
         }
         System.out.println();
-
+        
+        
+        //이메일 체크
         System.out.print("체크할 이메일를 입력하시오: ");
         String email3 = scanner.next();
         if(userDao.existingUser(email3) == true) {
@@ -60,6 +63,7 @@ private static UserDAO userDao = new UserDAO();
             System.out.println(email3 + "는 존재하지 않습니다.");
         }
         
+        //닉네임 체크
         System.out.print("체크할 닉네임를 입력하시오: ");
         String nickname = scanner.next();
         if(userDao.existingNickname(nickname) == true) {
