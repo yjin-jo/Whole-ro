@@ -1,6 +1,7 @@
 package model.dao;
 
 public class DAOFactory {
+    
     private DAOFactory(){}
     
     private static class DAOFactoryHandelr{
@@ -11,4 +12,10 @@ public class DAOFactory {
     public static DAOFactory getInstance(){
         return DAOFactoryHandelr.INSTANCE;
     }
+    
+//    public PostDAO getPostDAO() {
+//        
+//    }
+//    
+    
 }
