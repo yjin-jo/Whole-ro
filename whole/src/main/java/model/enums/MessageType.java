@@ -1,6 +1,6 @@
 package model.enums;
 
 public enum MessageType {
-    RECEIVER,
-    SENDER
+    MARKET,
+   WITHWITH
 }
