@@ -8,8 +8,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
-import model.MessageEntity;
 import model.dao.MessageDAO;
+import model.entity.MessageEntity;
 import model.enums.BooleanEnum;
 import model.enums.MessageType;
 

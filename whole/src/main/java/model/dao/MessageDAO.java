@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 import model.Food;
-import model.MessageEntity;
+import model.entity.MessageEntity;
 import model.enums.BooleanEnum;
 import model.enums.MessageType;
 
