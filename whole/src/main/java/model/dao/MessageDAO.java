@@ -52,25 +52,11 @@ private JDBCUtil jdbcUtil = null;
         
      jdbcUtil.setSqlAndParameters(sql, new Object[] { id });        // JDBCUtil에 query문 설정
                  
-//     
-//     private Long msgId;
-//     private Long senderId;
-//     private Long receiverId;
-//     private String title;
-//     private String content;
-//     private String image;
-//     private Date reg_date;
-//     private BooleanEnum is_read;
-//     private MessageType msgType;
-     
-     
      try {
          ResultSet rs = jdbcUtil.executeQuery();         // query 실행         
          List<MessageEntity> messageList = new ArrayList<MessageEntity>();    // Community들의 리스트 생성
          
          while (rs.next()) {
-     
-             
              MessageEntity message = new MessageEntity(
                      rs.getLong("msg_id"),
                      rs.getLong("sender_id"),
@@ -79,6 +65,7 @@ private JDBCUtil jdbcUtil = null;
                      null,
                      null, 
                      rs.getDate("reg_date").toLocalDate(),
+                     null,
                      null,
                      null
                      );
@@ -114,6 +101,7 @@ private JDBCUtil jdbcUtil = null;
                      rs.getString("image"),
                      rs.getDate("reg_date").toLocalDate(),
                      null,
+                     null,
                      null
                      );
              return message;
@@ -128,48 +116,42 @@ private JDBCUtil jdbcUtil = null;
  }
     
     
-    TITLE, CONTENT, IMAGE, REG_DATE, IS_READ, MSG_TYPE, MSG_ID, SENDER_ID, RECEIVER_ID, POST_ID
     
-   public MessageEntity sendMessage(MessageEntity message) throws SQLException {
+   public Boolean sendMessage(MessageEntity message) throws SQLException {
+       int rs = 0;
        
+       System.out.println(message);
+
         String title = message.getTitle();
         String content = message.getContent();
+        String img = message.getImage();
         LocalDate regDate = message.getRegDate();
-        BooleanEnum is_read = message.getIsRead();
+        BooleanEnum isRead = message.getIsRead();
+        System.out.println(isRead);
         
-        
-        
+        MessageType messageType = message.getMsgType();
+        Long senderId = message.getSenderId();
+        Long receiverId = message.getReceiverId();
+        Long postId = message.getPostId();
         
         String sql = "INSERT INTO message "
                 + "(TITLE, CONTENT, IMAGE, REG_DATE, IS_READ, MSG_TYPE, MSG_ID, SENDER_ID, RECEIVER_ID, POST_ID) "
-                + "VAULES(? ,?, ?, ?, ?, ?, SEQUENCE_MESSAGEID.nextval, ?, ?, ?)  ";
-                
-        
-     jdbcUtil.setSqlAndParameters(sql, new Object[] { id });        // JDBCUtil에 query문 설정
+                + "VALUES (? ,?, ?, ?, ?, ?, SEQUENCE_MESSAGEID.nextval, ?, ?, ?) ";
+               
+     jdbcUtil.setSqlAndParameters(sql, new Object[] {title, content, img, regDate, isRead.toString(), messageType.toString(), senderId, receiverId,  postId });        // JDBCUtil에 query문 설정
                
      try {
-         ResultSet rs = jdbcUtil.executeQuery();         // query 실행                  
-         if (rs.next()) {
-             MessageEntity message = new MessageEntity(
-                     id,
-                     rs.getLong("sender_id"),
-                     null,
-                     rs.getString("title"),
-                     rs.getString("content"),
-                     rs.getString("image"),
-                     rs.getDate("reg_date").toLocalDate(),
-                     null,
-                     null
-                     );
-             return message;
-         }                        
-         
+         rs = jdbcUtil.executeUpdate();         // query 실행      
+        System.out.print(rs);
+         return true;
      } catch (Exception ex) {
+         jdbcUtil.rollback();
          ex.printStackTrace();
-     } finally {
+     }finally {
+         jdbcUtil.commit();
          jdbcUtil.close();       // resource 반환
      }
-     return null;
+     return false;
  }
    
 }
