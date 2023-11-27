@@ -39,9 +39,7 @@ public class Food extends Post {
 	}
 
 	@Override
-
 	public String toString() {
-
 		return String.format("%d %15s %15s %15s %15s",
 				post_id, title, image, exp_date, reg_date);
 
