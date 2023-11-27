@@ -115,20 +115,14 @@ private JDBCUtil jdbcUtil = null;
      return null;
  }
     
-    
-    
    public Boolean sendMessage(MessageEntity message) throws SQLException {
        int rs = 0;
-       
-       System.out.println(message);
 
         String title = message.getTitle();
         String content = message.getContent();
         String img = message.getImage();
         LocalDate regDate = message.getRegDate();
         BooleanEnum isRead = message.getIsRead();
-        System.out.println(isRead);
-        
         MessageType messageType = message.getMsgType();
         Long senderId = message.getSenderId();
         Long receiverId = message.getReceiverId();
@@ -153,5 +147,25 @@ private JDBCUtil jdbcUtil = null;
      }
      return false;
  }
+   
+   public Boolean deleteMessage(Long id) throws SQLException {
+       String sql = "DELETE FROM message WHERE msg_id=?";  
+       
+       jdbcUtil.setSqlAndParameters(sql, new Object[] {id});   // JDBCUtil에 delete문과 매개 변수 설정
+
+       try {               
+           jdbcUtil.executeUpdate();  // delete 문 실행
+           return true;
+       } catch (Exception ex) {
+           jdbcUtil.rollback();
+           ex.printStackTrace();
+       }
+       finally {
+           jdbcUtil.commit();
+           jdbcUtil.close();   // resource 반환
+       }       
+       return false;
+       
+   }
    
 }
