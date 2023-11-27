@@ -14,8 +14,6 @@ public class MarketDAO {
     public MarketDAO() {
         jdbcUtil = new JDBCUtil(); // JDBCUtil 객체 생성
     }
-
-    // post 
     
     // 타입 상관없이 모든 글을 보여주기
     public List<Item> findItemListAllType() throws SQLException {
@@ -132,4 +130,46 @@ public class MarketDAO {
     }
     return null;
 }
+
+    //같은 성별에 해당하는 아이템 리스트만 보여주기
+    public List<Item> findItemListGenderType(String type) throws SQLException {
+
+        String sql = "SELECT post_id, title, type, content, image,reg_date, writer_id,cnt_like,detail,price,scrap "
+                + "FROM ITEM JOIN POST USING (post_id) "
+                + "WHERE type = ? ";
+
+        jdbcUtil.setSqlAndParameters(sql,  new Object[]{type}); // JDBCUtil에 query문 설정
+
+  
+        try {
+            ResultSet rs = jdbcUtil.executeQuery(); // query 실행
+           
+            List<Item> itemList = new ArrayList<Item>(); // 타입이 Market인 Post 리스트 생성
+            while (rs.next()) {
+                Item item = new Item();
+                item.setPost_id(rs.getLong("post_id"));// post 객체를 생성하여 현재 행의 정보를 저장
+                item.setTitle(rs.getString("title"));
+                item.setType(rs.getString("type"));
+                item.setContent(rs.getString("content"));
+                item.setImage(rs.getString("image"));
+                item.setReg_date(rs.getDate("reg_date").toLocalDate());
+                item.setWriter_id(rs.getLong("writer_id"));
+                item.setCnt_like(rs.getInt("cnt_like"));
+                item.setDetail(rs.getString("detail"));
+                item.setPrice(rs.getLong("price"));
+                item.setScrap(rs.getInt("scrap"));
+                itemList.add(item);             // List에 post 객체 저장
+            }
+            return itemList;
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            jdbcUtil.close(); // resource 반환
+        }
+        return null;
+    }
+   
+
 }
+
