@@ -31,12 +31,15 @@ public class RegisterUserController implements Controller {
 
     	// POST request (회원정보가 parameter로 전송됨)
        	User user = new User(
-			request.getParameter("userId"),
-			request.getParameter("password"),
-			request.getParameter("name"),
-			request.getParameter("email"),
-			request.getParameter("phone"),
-			Integer.parseInt(request.getParameter("commId")));
+                Long.parseLong(request.getParameter("userId")),
+                request.getParameter("email"),
+                request.getParameter("password"),
+                request.getParameter("nickname"),
+                Integer.parseInt(request.getParameter("gender")),
+                request.getParameter("introduction"),
+                request.getParameter("interest"),
+                request.getParameter("addresss"),
+                Integer.parseInt(request.getParameter("reportCount")));
 		
         log.debug("Create User : {}", user);
 

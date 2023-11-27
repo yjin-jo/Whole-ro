@@ -13,28 +13,36 @@ public class User {
     private String password;
     private String nickname;
     private int gender;
-    private String introdution;
+    private String introduction;
     private String interest;
     private String address;
     private int reportCount;
 
     public User() { }       // 기본 생성자
     
-    public User(String nickname, String introdution, String interest) { 
+    public User(String nickname, String introduction, String interest) { 
         this.nickname = nickname;
-        this.introdution = introdution;
+        this.introduction = introduction;
         this.interest = interest; 
     }  
     
-    public User(long userId, String email, String password, String nickname, int gender, String introdution,
+    public User(String password, String name, String introduction, String interest, String address, String email) {
+        this.password = password;
+        this.nickname = name;
+        this.introduction = introduction;
+        this.interest = interest;
+        this.address = address;
+        this.email = email;
+    }
+    
+    public User(String email, String password, String nickname, int gender, String introduction,
             String interest, String address, int reportCount) {
         super();
-        this.userId = userId;
         this.email = email;
         this.password = password;
         this.nickname = nickname;
         this.gender = gender;
-        this.introdution = introdution;
+        this.introduction = introduction;
         this.interest = interest;
         this.address = address;
         this.reportCount = reportCount;
@@ -51,7 +59,7 @@ public class User {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
@@ -87,12 +95,12 @@ public class User {
         this.gender = gender;
     }
 
-    public String getIntrodution() {
-        return introdution;
+    public String getIntroduction() {
+        return introduction;
     }
 
-    public void setIntrodution(String introdution) {
-        this.introdution = introdution;
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
     }
 
     public String getInterest() {
@@ -136,7 +144,7 @@ public class User {
     @Override
     public String toString() {
         return "User [userId=" + userId + ", email=" + email + ", password=" + password + ", nickname=" + nickname + ", gender=" + gender + 
-                ", introdution=" + introdution + ", interest=" + interest + ", address=" + address 
+                ", introdution=" + introduction + ", interest=" + interest + ", address=" + address 
                 + ", reportCount=" + reportCount + "]";
     }   
 }

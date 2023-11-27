@@ -95,36 +95,36 @@ public class UserManager {
 		return true;
 	}
 
-	public List<User> makeFriends(String userId) throws Exception {
-		return userAanlysis.recommendFriends(userId);
-	}
+	//public List<User> makeFriends(String userId) throws Exception {
+	//	return userAanlysis.recommendFriends(userId);
+	//}
 	
-	public Community createCommunity(Community comm) throws SQLException {
-		return commDAO.create(comm);		
-	}
+	///public Community createCommunity(Community comm) throws SQLException {
+	//	return commDAO.create(comm);		
+	//}
 
-	public int updateCommunity(Community comm) throws SQLException {
-		return commDAO.update(comm);				
-	}
+	//public int updateCommunity(Community comm) throws SQLException {
+	//	return commDAO.update(comm);				
+	//}
 	
-	public Community findCommunity(int commId) throws SQLException {
-		Community comm = commDAO.findCommunity(commId); 
+	//public Community findCommunity(int commId) throws SQLException {
+		//Community comm = commDAO.findCommunity(commId); 
 		
-		List<User> memberList = userDAO.findUsersInCommunity(commId);
-		comm.setMemberList(memberList);
+		//List<User> memberList = userDAO.findUsersInCommunity(commId);
+		//comm.setMemberList(memberList);
 		
-		int numOfMembers = userDAO.getNumberOfUsersInCommunity(commId);
-		comm.setNumOfMembers(numOfMembers);
-		return comm;
-	}
+		//int numOfMembers = userDAO.getNumberOfUsersInCommunity(commId);
+		////comm.setNumOfMembers(numOfMembers);
+		//return comm;
+	//}
 	
 	public List<Community> findCommunityList() throws SQLException {
 		return commDAO.findCommunityList();
 	}
 	
-	public List<User> findCommunityMembers(int commId) throws SQLException {
-		return userDAO.findUsersInCommunity(commId);
-	}
+	//p/ublic List<User> findCommunityMembers(int commId) throws SQLException {
+	//	return userDAO.findUsersInCommunity(commId);
+	//}
 
 	public UserDAO getUserDAO() {
 		return this.userDAO;
